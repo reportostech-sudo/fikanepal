@@ -8,6 +8,6 @@ export default defineConfig({
   preview: {
     port: 8585,
     host: true,
-    allowedHosts: ['fikanepal.com', 'www.fikanepal.com']
+    allowedHosts: true
   }
 })
