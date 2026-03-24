@@ -14,7 +14,7 @@
   --font-body: 'Inter', sans-serif;
   
   /* Layout */
-  --container-width: 1400px;
+  --container-max-width: 1440px;
   --spacing-lg: 160px; /* More generous spacing */
   --spacing-md: 80px;
 }
@@ -49,7 +49,7 @@ a {
 .container {
   max-width: var(--container-max-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 80px;
 }
 
 .btn {
@@ -91,7 +91,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 60px;
+  padding: 0 80px;
   z-index: 1000;
   background: transparent;
   transition: all 0.4s ease;
@@ -176,12 +176,15 @@ header .logo .fika {
   box-shadow: 0 0 10px rgba(184, 94, 33, 0.3);
 }
 
-.nav-links {
-  display: flex;
-  gap: 40px;
+.nav-links-wrapper {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
 }
 
 .nav-links a {
@@ -220,6 +223,37 @@ header .logo .fika {
   border: 1px solid var(--color-black);
   padding: 10px 20px;
   transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.mobile-nav-toggle span {
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-toggle.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.mobile-nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
 }
 
 .btn-contact:hover {
@@ -628,22 +662,155 @@ section {
   opacity: 0.4;
 }
 
+@media (max-width: 1024px) {
+  header {
+    padding: 0 30px;
+  }
+  
+  .nav-links {
+    gap: 20px;
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
-  .contact-container {
-    grid-template-columns: 1fr;
+  header {
+    height: 70px;
+    padding: 0 40px;
   }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
+
+  .container {
+    padding: 0 40px;
   }
-  
-  .footer-links, .footer-contact {
+
+  header.scrolled {
+    height: 60px;
+  }
+
+  .logo .fika { font-size: 1.8rem; }
+  .logo .nepal { font-size: 1.5rem; }
+  .logo .dot { width: 6px; height: 6px; }
+
+  .nav-links-wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: var(--color-white);
+    z-index: 1000;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
     align-items: center;
+    justify-content: center;
+    transform: none;
+    left: auto;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+  }
+
+  .nav-links-wrapper.active {
+    right: 0;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    color: var(--color-black) !important;
+    opacity: 1;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .btn-contact {
+    display: none;
   }
 
   .hero h1 {
     font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-info {
+    opacity: 1;
+    top: auto;
+    bottom: 40px;
+    left: 40px;
+    transform: none;
+    text-align: left;
+  }
+
+  .pillar-card::after {
+    opacity: 1;
+    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%);
+  }
+
+  .timeline::before {
+    left: 40px;
+  }
+
+  .timeline-item {
+    gap: 40px;
+    padding-left: 40px;
+  }
+
+  .timeline-date {
+    min-width: 80px;
+    text-align: left;
+    font-size: 0.7rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .vision-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .vision-image-wrapper {
+    padding-right: 40px;
+    padding-bottom: 40px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .footer-links, .footer-contact {
+    align-items: flex-start;
   }
 }
 .reveal {
