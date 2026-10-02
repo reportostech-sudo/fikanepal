@@ -746,20 +746,40 @@ section {
 
   .pillars-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pillar-card {
+    aspect-ratio: auto;
+    min-height: 260px;
   }
 
   .pillar-info {
     opacity: 1;
     top: auto;
-    bottom: 40px;
-    left: 40px;
+    right: 24px;
+    bottom: 24px;
+    left: 24px;
     transform: none;
     text-align: left;
   }
 
+  .pillar-info h3 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .pillar-info p {
+    color: var(--color-white);
+    opacity: 1;
+    line-height: 1.5;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
   .pillar-card::after {
     opacity: 1;
-    background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 50%);
+    background: rgba(0, 0, 0, 0.5);
   }
 
   .timeline::before {
